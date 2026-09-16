@@ -39,6 +39,7 @@ app.get('/treinos', (req,res) => {
 
 
 app.get('/treinos/id', (req,res) => {
+        const id = Number(req.params.id);
     
 });
 // ------------------------------------------------------------
