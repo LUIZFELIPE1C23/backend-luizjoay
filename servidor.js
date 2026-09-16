@@ -38,6 +38,7 @@ app.get('/treinos', (req,res) => {
 });
 
 
+// [PROF] Faltou os dois pontos: eh /treinos/:id. E essa rota ainda nao responde nada, falta buscar o treino e devolver.
 app.get('/treinos/id', (req,res) => {
         const id = Number(req.params.id);
     
@@ -49,6 +50,7 @@ app.get('/treinos/id', (req,res) => {
 
 
 // ------------------------------------------------------------
+// [PROF] POST, PUT e DELETE ainda estao vazios. Olha a tabela do README e o testes.http e vai fazendo uma de cada vez.
 // POST /treinos - cria um treino (400 se os dados forem invalidos)
 // ------------------------------------------------------------
 
