@@ -37,21 +37,34 @@ app.get('/treinos', (req,res) => {
     res.status(200).json(treinos);
 });
 
+app.get('/ treinos /: id ', (req,res) => {
+    const id = Number(req.params.id);
+    const treino = treinos.find((t) => t.id === id);
 
-app.get('/treinos/id', (req,res) => {
-        const id = Number(req.params.id);
-    
+    if (treino === undefined) {
+        return res.status(404).json({ erro: 'Treino nao encontrado .' });
+    }
+    res.status(200).json(treino);
 });
-// ------------------------------------------------------------
-// GET /treinos/:id - busca um treino pelo id (404 se nao existir)
-// ------------------------------------------------------------
 
 
+app.post('/treinos', (req,res) => {
+    const erro = validarTreino(req.body);
 
-// ------------------------------------------------------------
-// POST /treinos - cria um treino (400 se os dados forem invalidos)
-// ------------------------------------------------------------
+    if(erro !== null ){
+        return res.status(400).json({ erro: erro });
+    }
 
+    const treino = {
+        id: proximoId,
+        nome: req.body.nome,
+        duracao: req.body.duracao
+    };
+    proximoId = proximoId + 1;
+    treinos.push(treino);
+
+    res.status(201).json(treino);
+});
 
 
 // ------------------------------------------------------------
