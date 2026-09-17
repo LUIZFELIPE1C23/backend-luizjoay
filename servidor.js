@@ -37,18 +37,9 @@ app.get('/treinos', (req,res) => {
     res.status(200).json(treinos);
 });
 
-app.get('/ treinos /: id ', (req,res) => {
-    const id = Number(req.params.id);
-    const treino = treinos.find((t) => t.id === id);
 
-<<<<<<< HEAD
-    if (treino === undefined) {
-        return res.status(404).json({ erro: 'Treino nao encontrado .' });
-    }
-    res.status(200).json(treino);
-=======
 // [PROF] Faltou os dois pontos: eh /treinos/:id. E essa rota ainda nao responde nada, falta buscar o treino e devolver.
-app.get('/treinos/:id', (req,res) => {
+app.get('/treinos/id', (req,res) => {
         const id = Number(req.params.id);
     
 >>>>>>> 6ed787bcaa0657cd8d1ee1cf17c74b4bde8539df
