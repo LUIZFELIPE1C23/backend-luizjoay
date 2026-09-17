@@ -41,19 +41,33 @@ app.get('/ treinos /: id ', (req,res) => {
     const id = Number(req.params.id);
     const treino = treinos.find((t) => t.id === id);
 
+<<<<<<< HEAD
     if (treino === undefined) {
         return res.status(404).json({ erro: 'Treino nao encontrado .' });
     }
     res.status(200).json(treino);
+=======
+// [PROF] Faltou os dois pontos: eh /treinos/:id. E essa rota ainda nao responde nada, falta buscar o treino e devolver.
+app.get('/treinos/:id', (req,res) => {
+        const id = Number(req.params.id);
+    
+>>>>>>> 6ed787bcaa0657cd8d1ee1cf17c74b4bde8539df
 });
 
 
 app.post('/treinos', (req,res) => {
     const erro = validarTreino(req.body);
 
+<<<<<<< HEAD
     if(erro !== null ){
         return res.status(400).json({ erro: erro });
     }
+=======
+// ------------------------------------------------------------
+// [PROF] POST, PUT e DELETE ainda estao vazios. Olha a tabela do README e o testes.http e vai fazendo uma de cada vez.
+// POST /treinos - cria um treino (400 se os dados forem invalidos)
+// ------------------------------------------------------------
+>>>>>>> 6ed787bcaa0657cd8d1ee1cf17c74b4bde8539df
 
     const treino = {
         id: proximoId,
