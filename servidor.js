@@ -89,7 +89,7 @@ app.put('/treinos/:id',(req,res) => {
 });
 
 
-app.delete('/treinos/:id ', (req,res) => {
+app.delete('/treinos/:id', (req,res) => {
     const id = Number(req.params.id);
     const posicao = treinos.findIndex((t) => t.id === id);
    
