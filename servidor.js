@@ -32,33 +32,30 @@ if (typeof corpo.duracao !== 'number' || corpo.duracao <= 0) {
 }
 
 
-
+// get todos
 app.get('/treinos', (req,res) => {
     res.status(200).json(treinos);
 });
 
 
-// [PROF] Faltou os dois pontos: eh /treinos/:id. E essa rota ainda nao responde nada, falta buscar o treino e devolver.
-app.get('/treinos/id', (req,res) => {
-        const id = Number(req.params.id);
-    
+//get por id
+app.get('/treinos/:id', (req,res) => {
+    const id = Number(req.params.id);
+    const treino = treinos.find((t) => t.id === id);
 
+    if(treino === undefined) {
+        return res.status (404).json({ erro: 'Treino nao encontrado .' });
+    }
+    res.status(200).json(treino);
 });
 
-
+//post
 app.post('/treinos', (req,res) => {
     const erro = validarTreino(req.body);
-
 
     if(erro !== null ){
         return res.status(400).json({ erro: erro });
     }
-
-// ------------------------------------------------------------
-// [PROF] POST, PUT e DELETE ainda estao vazios. Olha a tabela do README e o testes.http e vai fazendo uma de cada vez.
-// POST /treinos - cria um treino (400 se os dados forem invalidos)
-// ------------------------------------------------------------
-
 
     const treino = {
         id: proximoId,
@@ -71,17 +68,38 @@ app.post('/treinos', (req,res) => {
     res.status(201).json(treino);
 });
 
+//substitui
+app.put('/treinos/:id',(req,res) => {
+    const id = Number(req.params.id);
+    const treino = treinos.find((t) => t.id === id);
 
-// ------------------------------------------------------------
-// PUT /treinos/:id - substitui um treino
-// ------------------------------------------------------------
+    if (treino === undefined) {
+        return res.status (404).json({ erro: 'Treino nao encontrado .' });
+    }
+
+    const erro = validarTreino(req.body);
+    if (erro !== null){
+        return res.status(400).json({erro: erro});
+    }
+
+    treino.nome = req.body.nome;
+    treino.duracao = req.body.duracao;
+    
+    res.status(200).json(treino);
+});
 
 
+app.delete('/treinos/:id ', (req,res) => {
+    const id = Number(req.params.id);
+    const posicao = treinos.findIndex((t) => t.id === id);
+   
+    if(posicao === -1){
+        return res.status(404).json({ erro: 'Treino nao encontrado .' });
+    }
 
-// ------------------------------------------------------------
-// DELETE /treinos/:id - remove um treino
-// ------------------------------------------------------------
-
+    treinos.splice(posicao, 1);
+    res.status(204).end();
+});
 
 
 // ------------------------------------------------------------
