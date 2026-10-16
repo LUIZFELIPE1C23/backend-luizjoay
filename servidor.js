@@ -9,12 +9,10 @@
 // ============================================================
 
 const express = require('express');
-const app = express();
-
-// Faz o Express entender JSON no corpo das requisicoes
-app.use(express.json());
-
 const { DatabaseSync } = require('node:sqlite');
+
+const app = express();
+app.use(express.json());
 
 
 // Conecta ao banco (cria o arquivo treinos.db se nao existir)
