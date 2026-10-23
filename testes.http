@@ -90,3 +90,22 @@ DELETE {{url}}/treinos/99999
 
 ### 12 - Listar de novo pra conferir       -> espera 200
 GET {{url}}/treinos
+
+### 13 - Contar os treinos                 -> espera 200
+GET {{url}}/treinos/total
+
+
+### 14 - Filtrar treinos com duracao >= 40 -> espera 200 e lista ordenada
+GET {{url}}/treinos?minimo=40
+
+
+### 15 - Buscar treinos pelo nome           -> espera 200
+GET {{url}}/treinos?busca=peito
+
+
+### 16 - Resumir os treinos                 -> espera 200
+GET {{url}}/treinos/resumo
+
+
+### 17 - Buscar com id invalido             -> espera 400
+GET {{url}}/treinos/abc
