@@ -10,4 +10,12 @@ db.exec(`
     )
 `);
 
+db.exec(`
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id      INTEGER PRIMARY KEY AUTOINCREMENT,
+        usuario TEXT    NOT NULL UNIQUE,
+        senha_hash TEXT NOT NULL
+    )
+`);
+
 module.exports = db;

@@ -9,6 +9,20 @@
 @url = http://localhost:3000
 
 
+### Aula 05 - Login como diego             -> espera 200 e Set-Cookie
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "diego",
+    "senha": "1234"
+}
+
+
+### Aula 05 - Perfil de diego              -> espera 200
+GET {{url}}/perfil
+
+
 ### 1 - Listar todos os treinos            -> espera 200 e um array
 GET {{url}}/treinos
 
@@ -109,3 +123,117 @@ GET {{url}}/treinos/resumo
 
 ### 17 - Buscar com id invalido             -> espera 400
 GET {{url}}/treinos/abc
+
+
+### Aula 05 - Senha errada                 -> espera 401
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "diego",
+    "senha": "errada"
+}
+
+
+### Aula 05 - Usuario inexistente          -> espera 401 com a mesma mensagem
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "nao-existe",
+    "senha": "1234"
+}
+
+
+### Aula 05 - Login como aluno             -> espera 200 e substitui o cookie
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "aluno",
+    "senha": "senha"
+}
+
+
+### Aula 05 - Perfil de aluno              -> espera 200 com usuario aluno
+GET {{url}}/perfil
+
+
+### Aula 05 - Logout                       -> espera 204
+POST {{url}}/logout
+
+
+### Aula 05 - Perfil apos logout           -> espera 401
+GET {{url}}/perfil
+
+
+### Aula 05 - Criar treino sem login       -> espera 401
+POST {{url}}/treinos
+Content-Type: application/json
+
+{
+    "nome": "Treino sem login",
+    "duracao": 30
+}
+
+
+### Aula 05 - Login antes de criar treino  -> espera 200
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "diego",
+    "senha": "1234"
+}
+
+
+### Aula 05 - Criar treino logado          -> espera 201
+POST {{url}}/treinos
+Content-Type: application/json
+
+{
+    "nome": "Treino autenticado",
+    "duracao": 30
+}
+
+
+### Aula 06 - Login correto com senha protegida -> espera 200 e Set-Cookie
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "diego",
+    "senha": "1234"
+}
+
+
+### Aula 06 - Perfil com sessao              -> espera 200 sem senha_hash
+GET {{url}}/perfil
+
+
+### Aula 06 - Senha errada                   -> espera 401
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "diego",
+    "senha": "errada"
+}
+
+
+### Aula 06 - Usuario inexistente            -> espera 401 com a mesma mensagem
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "nao-existe",
+    "senha": "1234"
+}
+
+
+### Aula 06 - Logout                         -> espera 204
+POST {{url}}/logout
+
+
+### Aula 06 - Perfil depois do logout        -> espera 401
+GET {{url}}/perfil
